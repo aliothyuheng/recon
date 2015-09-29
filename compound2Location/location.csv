@@ -1,0 +1,9 @@
+location_id,location_abbr,location_name
+1,[e],extracellular
+2,[n],nucleus
+3,[x],peroxisome
+4,[c],cytoplasm
+5,[l],lysosome
+6,[m],mitochondrion
+7,[r],endoplasmic reticulum
+8,[g],Golgi appratus
