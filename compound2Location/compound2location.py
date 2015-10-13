@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[12]:
-
 import csv
 
 #import file
@@ -31,18 +26,11 @@ for x in range(1, len(data)):
     result.append(temp)
     temp = []
 
-outfile = open('compound2location_1.csv', 'wb')
+outfile = open('compound2location.csv', 'wb')
 writer = csv.writer(outfile)
 writer.writerows(result)
 outfile.close()
 
-
-# In[15]:
-
-
-
-
-# In[ ]:
 
 
 
