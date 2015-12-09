@@ -11,16 +11,24 @@ f.close()
 #read reaction ref
 ref = {}
 with open("reaction_ref.csv", "rb") as f:
-    reader = csv.reader(f,  quotechar='"')
+    reader = csv.reader(f)
     for line in reader:
         temp = line[1].split(",")
         ref[line[0]] = temp
 f.close()
 
+#read pathway ref
+pathway = {}
+with open("pathway_remove_transport.csv", "rb") as f:
+    reader = csv.reader(f)
+    for line in reader:
+        pathway[line[1]] = line[0]
+f.close()
+
 #read original file
 original = []
 with open("reaction original.csv", "rb") as f:
-    reader = csv.reader(f, quotechar='"')
+    reader = csv.reader(f)
     for line in reader:
         original.append(line)
 f.close()
@@ -33,13 +41,15 @@ for item in duplicate_pathway:
         temp = []
         temp.append(item)
         temp.append(i)
-        temp.extend(original[int(i)][:4])
+        temp.extend(original[int(i)][:3])
+        path = original[int(i)][3].replace("'", "")
+        if "Transport" in path:
+            temp.append("101")
+        else:
+            temp.append(pathway[path])
         result.append(temp)
         
 with open("reaction_pathway_duplicate.csv", "wb") as f:
     writer = csv.writer(f)
     writer.writerows(result)
 f.close()
-
-
-
